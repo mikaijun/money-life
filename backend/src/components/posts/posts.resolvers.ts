@@ -1,11 +1,11 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { PaymentsModel } from './interfaces/payments.model';
+import { PostsModel } from './interfaces/posts.model';
 
-@Resolver((of) => PaymentsModel)
-export class PaymentsResolver {
+@Resolver((of) => PostsModel)
+export class PostsResolver {
   constructor() {}
 
-  @Query(() => [PaymentsModel], { name: 'posts', nullable: true })
+  @Query(() => [PostsModel], { name: 'posts', nullable: true })
   async getPosts() {
     return [
       {

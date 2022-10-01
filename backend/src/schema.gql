@@ -2,11 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type PaymentsModel {
+type PostsModel {
   id: String!
   title: String!
 }
 
 type Query {
-  posts: [PaymentsModel!]
+  posts: [PostsModel!]
 }
