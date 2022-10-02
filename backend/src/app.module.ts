@@ -5,12 +5,13 @@ import { PostsModule } from './components/posts/posts.module';
 import { validate } from './config/environments/env-validator';
 import { PbEnvModule } from '@pb-config/environments/pb-env.module';
 import * as path from 'path';
+import { PbEnv } from './config/environments/pb-env.service';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
-      autoSchemaFile: path.join(process.cwd(), 'src/schema.gql'),
-      sortSchema: true,
+    GraphQLModule.forRootAsync({
+      inject: [PbEnv],
+      useFactory: (env: PbEnv) => env.GqlModuleOptionsFactory,
     }),
     ConfigModule.forRoot({
       envFilePath: ['.env.development.local'],
