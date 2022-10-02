@@ -2,11 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type PostsModel {
-  id: String!
-  title: String!
-}
-
 type Query {
-  posts: [PostsModel!]
+  hello: String!
+  helloEnv: String!
 }

@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
 import { PostsModule } from './components/posts/posts.module';
 import { validate } from './config/environments/env-validator';
+import { PbEnvModule } from '@pb-config/environments/pb-env.module';
 import * as path from 'path';
 
 @Module({
@@ -15,6 +16,7 @@ import * as path from 'path';
       envFilePath: ['.env.development.local'],
       validate,
     }),
+    PbEnvModule,
     PostsModule,
   ],
 })

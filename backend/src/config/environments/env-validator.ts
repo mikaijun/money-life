@@ -22,8 +22,8 @@ export class EnvValidator {
   @IsEnum(NodeEnvEnum)
   NODE_ENV: NodeEnvEnum;
 
-  @IsNumber()
-  PORT = 3333; // デフォルト値も指定できる
+  // @IsNumber()
+  // PORT = 3333;
 
   @IsNotEmpty()
   @IsString()
