@@ -4,7 +4,6 @@ import { ConfigModule } from '@nestjs/config';
 import { PostsModule } from './components/posts/posts.module';
 import { validate } from './config/environments/env-validator';
 import { PbEnvModule } from '@pb-config/environments/pb-env.module';
-import * as path from 'path';
 import { PbEnv } from './config/environments/pb-env.service';
 
 @Module({
