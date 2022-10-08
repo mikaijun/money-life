@@ -1,10 +1,12 @@
 import { PbEnv } from '@pb-config/environments/pb-env.service';
 import { ConfigService } from '@nestjs/config';
 import { Query, Resolver } from '@nestjs/graphql';
+import { PrismaService } from '@pb-components/prisma/prisma.service';
+import { PostsModel } from './interfaces/posts.model';
 
 @Resolver()
 export class PostsResolver {
-  constructor(private configService: ConfigService, private pbEnv: PbEnv) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   // @Query(() => [PostsModel], { name: 'posts', nullable: true })
   // async getPosts() {
@@ -19,13 +21,8 @@ export class PostsResolver {
   //     },
   //   ];
 
-  @Query(() => String)
-  hello(): string {
-    return this.configService.get<string>('DATABASE_URL'); // こっちと比べて
-  }
-
-  @Query(() => String)
-  helloEnv(): string {
-    return this.pbEnv.DatabaseUrl; // かなり直感的になりました。ミスも減りそう
+  @Query(() => [PostsModel], { name: 'prismaPosts', nullable: true })
+  async getPostsByPrisma() {
+    return this.prisma.post.findMany();
   }
 }

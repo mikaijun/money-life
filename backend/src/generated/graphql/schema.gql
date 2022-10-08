@@ -2,7 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type PostsModel {
+  id: String!
+  title: String!
+}
+
 type Query {
-  hello: String!
-  helloEnv: String!
+  prismaPosts: [PostsModel!]
 }
