@@ -1,28 +1,46 @@
-import { PbEnv } from '@pb-config/environments/pb-env.service';
-import { ConfigService } from '@nestjs/config';
-import { Query, Resolver } from '@nestjs/graphql';
-import { PrismaService } from '@pb-components/prisma/prisma.service';
-import { PostsModel } from './interfaces/posts.model';
+import { PrismaService } from './../prisma/prisma.service';
+import { Args, Query, Resolver } from '@nestjs/graphql';
+import { PostModel } from './interfaces/posts.model';
+import { GetPostsArgs } from './interfaces/get-posts-connection.args';
 
-@Resolver()
+@Resolver((of) => PostModel)
 export class PostsResolver {
-  constructor(private readonly prisma: PrismaService) {}
+ constructor(private readonly prisma: PrismaService) {}
 
-  // @Query(() => [PostsModel], { name: 'posts', nullable: true })
-  // async getPosts() {
-  //   return [
-  //     {
-  //       id: '1',
-  //       title: 'NestJS is so good.',
-  //     },
-  //     {
-  //       id: '2',
-  //       title: 'GraphQL is so good.',
-  //     },
-  //   ];
+  // 役目を終えたのでリネーム
+  @Query(() => [PostModel], { name: 'fixedPosts', nullable: true })
+  async getPostsByFixedData() {
+   return [
+     {
+       id: '1',
+       title: 'NestJS is so good.',
+     },
+     {
+       id: '2',
+       title: 'GraphQL is so good.',
+     },
+   ];
+ }
 
-  @Query(() => [PostsModel], { name: 'prismaPosts', nullable: true })
-  async getPostsByPrisma() {
-    return this.prisma.post.findMany();
+ @Query(() => [PostModel], { name: 'prismaPosts', nullable: true })
+ async getPostsByPrisma() {
+   return this.prisma.post.findMany();
+ }
+
+  @Query(() => [PostModel], { name: 'posts', nullable: true })
+  async getPosts(@Args() args: GetPostsArgs) {
+    return this.prisma.post.findMany({
+      where: {
+        type: args.type
+          ? {
+              in: args.type,
+            }
+          : undefined,
+        published: true,
+      },
+      orderBy: {
+        publishDate: 'desc',
+      },
+    });
   }
 }

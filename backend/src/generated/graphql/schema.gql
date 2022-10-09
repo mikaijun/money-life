@@ -2,11 +2,25 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type PostsModel {
-  id: String!
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PostModel {
+  contentPath: String!
+  emoji: String
+  excerpt: String
+  id: ID!
+  publishDate: DateTime
+  published: Boolean
+  thumbNailUrl: String
   title: String!
+  type: String!
 }
 
 type Query {
-  prismaPosts: [PostsModel!]
+  fixedPosts: [PostModel!]
+  posts(type: [String!]): [PostModel!]
+  prismaPosts: [PostModel!]
 }
