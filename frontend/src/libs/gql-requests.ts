@@ -4,7 +4,6 @@ import { Client } from 'urql';
 const GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT!;
 
 export function urqlClient(): Promise<Client> {
-  console.log(GRAPHQL_ENDPOINT)
   return new Promise((resolve, reject) => {
     const client = initUrqlClient(
       {

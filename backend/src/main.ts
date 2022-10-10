@@ -13,9 +13,7 @@ async function bootstrap() {
   const prismaService: PrismaService = app.get(PrismaService);
   prismaService.enableShutdownHooks(app);
   prismaService.enableLogger(winstonLogger);
-  console.log('発火確認')
   await app.listen(pbEnv.Port, '0.0.0.0'); // 外部からリクエストを受け付けられるように 0.0.0.0 を追加
-  console.log('発火確認2')
   winstonLogger.log(`PORT: ${pbEnv.Port}`);
 }
 bootstrap();

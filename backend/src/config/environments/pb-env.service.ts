@@ -59,7 +59,6 @@ export class PbEnv {
         { emit: 'event', level: 'warn' },
       ],
     };
-    console.log(this.NodeEnv);
     return {
       errorFormat: 'colorless',
       rejectOnNotFound: true,
