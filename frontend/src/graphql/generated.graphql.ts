@@ -2,9 +2,15 @@ import gql from 'graphql-tag';
 import * as Urql from 'urql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -36,28 +42,39 @@ export type Query = {
   prismaPosts?: Maybe<Array<PostModel>>;
 };
 
-
 export type QueryPostsArgs = {
   type?: InputMaybe<Array<Scalars['String']>>;
 };
 
-export type PostIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+export type PostIndexPageQueryVariables = Exact<{ [key: string]: never }>;
 
-
-export type PostIndexPageQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'PostModel', id: string, title: string, type: string, publishDate?: any | null }> | null };
-
+export type PostIndexPageQuery = {
+  __typename?: 'Query';
+  posts?: Array<{
+    __typename?: 'PostModel';
+    id: string;
+    title: string;
+    type: string;
+    publishDate?: any | null;
+  }> | null;
+};
 
 export const PostIndexPageDocument = gql`
-    query PostIndexPage {
-  posts {
-    id
-    title
-    type
-    publishDate
+  query PostIndexPage {
+    posts {
+      id
+      title
+      type
+      publishDate
+    }
   }
-}
-    `;
+`;
 
-export function usePostIndexPageQuery(options?: Omit<Urql.UseQueryArgs<PostIndexPageQueryVariables>, 'query'>) {
-  return Urql.useQuery<PostIndexPageQuery, PostIndexPageQueryVariables>({ query: PostIndexPageDocument, ...options });
-};
+export function usePostIndexPageQuery(
+  options?: Omit<Urql.UseQueryArgs<PostIndexPageQueryVariables>, 'query'>,
+) {
+  return Urql.useQuery<PostIndexPageQuery, PostIndexPageQueryVariables>({
+    query: PostIndexPageDocument,
+    ...options,
+  });
+}

@@ -6,8 +6,10 @@
     "dev": "next dev -p ${PORT:-3332}",
     "build": "next build",
     "start": "next start -p ${PORT:-3332}",
-    "lint": "next lint",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "lint": "next lint --dir src",
+    "lint:fix": "yarn lint --fix",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
     "graphql-tag": "^2.12.6",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.13.5",
+    "@graphql-codegen/client-preset": "1.0.5",
     "@graphql-codegen/typescript-operations": "^2.5.3",
     "@graphql-codegen/typescript-urql": "^3.7.0",
     "@types/node": "18.7.23",
@@ -27,8 +30,9 @@
     "@types/react-dom": "18.0.6",
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "^8.5.0",
     "graphql": "^16.6.0",
-    "typescript": "4.8.4",
-    "@graphql-codegen/client-preset": "1.0.5"
+    "prettier": "^2.7.1",
+    "typescript": "4.8.4"
   }
 }

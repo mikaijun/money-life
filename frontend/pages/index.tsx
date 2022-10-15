@@ -1,10 +1,10 @@
-import gql from "graphql-tag";
-import type { GetServerSideProps, NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import { PostIndexPageDocument } from "../src/graphql/generated.graphql";
-import { urqlClient } from "../src/libs/gql-requests";
-import styles from "../styles/Home.module.css";
+import gql from 'graphql-tag';
+import type { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import { PostIndexPageDocument } from '../src/graphql/generated.graphql';
+import { urqlClient } from '../src/libs/gql-requests';
+import styles from '../styles/Home.module.css';
 
 type Props = {
   posts: {
@@ -39,7 +39,7 @@ const Home: NextPage<Props> = (props) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
