@@ -2,30 +2,30 @@ import { Field, GraphQLISODateTime, ID, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class PostModel {
-  @Field((type) => ID)
+  @Field(() => ID)
   id: string;
 
-  @Field((type) => String)
+  @Field(() => String)
   title: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   emoji?: string;
 
-  @Field((type) => String)
+  @Field(() => String)
   type: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   thumbNailUrl: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   excerpt?: string;
 
-  @Field((type) => String)
+  @Field(() => String)
   contentPath: string;
 
-  @Field((type) => Boolean, { nullable: true })
+  @Field(() => Boolean, { nullable: true })
   published: boolean;
 
-  @Field((type) => GraphQLISODateTime, { nullable: true })
+  @Field(() => GraphQLISODateTime, { nullable: true })
   publishDate?: Date;
 }

@@ -110,9 +110,10 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
-.envrc
-.env.development.local
+# ローカル以外で運用する予定はないのでコメントアウトしている
+# .env
+# .envrc
+# .env.development.local
 .env.test.local
 .env.production.local
 .env.local

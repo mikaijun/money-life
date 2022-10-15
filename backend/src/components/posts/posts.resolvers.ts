@@ -3,29 +3,29 @@ import { Args, Query, Resolver } from '@nestjs/graphql';
 import { PostModel } from './interfaces/posts.model';
 import { GetPostsArgs } from './interfaces/get-posts-connection.args';
 
-@Resolver((of) => PostModel)
+@Resolver(() => PostModel)
 export class PostsResolver {
- constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   // 役目を終えたのでリネーム
   @Query(() => [PostModel], { name: 'fixedPosts', nullable: true })
   async getPostsByFixedData() {
-   return [
-     {
-       id: '1',
-       title: 'NestJS is so good.',
-     },
-     {
-       id: '2',
-       title: 'GraphQL is so good.',
-     },
-   ];
- }
+    return [
+      {
+        id: '1',
+        title: 'NestJS is so good.',
+      },
+      {
+        id: '2',
+        title: 'GraphQL is so good.',
+      },
+    ];
+  }
 
- @Query(() => [PostModel], { name: 'prismaPosts', nullable: true })
- async getPostsByPrisma() {
-   return this.prisma.post.findMany();
- }
+  @Query(() => [PostModel], { name: 'prismaPosts', nullable: true })
+  async getPostsByPrisma() {
+    return this.prisma.post.findMany();
+  }
 
   @Query(() => [PostModel], { name: 'posts', nullable: true })
   async getPosts(@Args() args: GetPostsArgs) {
