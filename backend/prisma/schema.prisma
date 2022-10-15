@@ -28,3 +28,12 @@ model Post {
   @@index([contentPath])
   @@map("posts")
 }
+
+model User {
+  id           String    @id @default(uuid())
+  name         String
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@map("users")
+}
