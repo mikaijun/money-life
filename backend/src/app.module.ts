@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ConfigModule } from '@nestjs/config';
 import { PostsModule } from './components/posts/posts.module';
-import { validate } from './config/environments/env-validator';
+import { AuthModule } from './components/auth/auth.module';
 import { PbEnvModule } from '@pb-config/environments/pb-env.module';
 import { PbEnv } from './config/environments/pb-env.service';
 import { WinstonModule } from 'nest-winston';
@@ -30,6 +29,7 @@ import { AppService } from '@pb-app.service';
       }),
     }),
     PostsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -26,4 +26,5 @@ type PostModel {
 type Query {
   posts(type: [String!]): [PostModel!]
   prismaPosts: [PostModel!]
+  test: String!
 }
