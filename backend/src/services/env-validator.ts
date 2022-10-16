@@ -16,9 +16,6 @@ export class EnvValidator {
   @IsEnum(NodeEnvEnum)
   NODE_ENV: NodeEnvEnum;
 
-  // @IsNumber()
-  // PORT = 3333;
-
   @IsNotEmpty()
   @IsString()
   DATABASE_URL: string;
