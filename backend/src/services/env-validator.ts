@@ -8,9 +8,7 @@ enum NodeEnvEnum {
 }
 
 /**
- * ①
- * バリデーションしたい環境変数がある場合はここに記載してください。
- * バリデーションに失敗するとアプリケーションは起動しません。
+ * バリデーションしたい環境変数を記載
  */
 export class EnvValidator {
   @IsEnum(NodeEnvEnum)
@@ -22,8 +20,7 @@ export class EnvValidator {
 }
 
 /**
- * ②
- * @param config バリデーション対象の Record<string, any>。今回は .env.development.local と 環境変数が合体したもの
+ * @param config バリデーション対象の Record<string, any>。今回は.envになる
  * @returns バリデーション済の Record<string, any>
  */
 export function validate(config: Record<string, unknown>) {

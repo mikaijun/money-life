@@ -8,7 +8,7 @@ import { PbEnv } from '@pb-services/pb-env.service';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env.development.local'],
+      envFilePath: ['.env'],
       validate,
       isGlobal: true,
     }),
