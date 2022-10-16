@@ -1,14 +1,10 @@
 import { NestFactory } from '@nestjs/core';
-import { PrismaService } from '@pb-prisma/prisma.service';
 import { PbEnv } from '@pb-services/pb-env.service';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const pbEnv = app.get(PbEnv);
-
-  const prismaService: PrismaService = app.get(PrismaService);
-  prismaService.enableShutdownHooks(app);
   await app.listen(pbEnv.Port, '0.0.0.0'); // 外部からリクエストを受け付けられるように 0.0.0.0 を追加
 }
 bootstrap();

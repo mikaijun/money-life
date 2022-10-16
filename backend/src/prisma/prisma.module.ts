@@ -1,5 +1,7 @@
 /**
- * fork:  https://github.com/notiz-dev/nestjs-prisma
+ * PrismaClientのインスタンスをNestJSで管理できるようにするためのmodule
+ * 参考記事; https://zenn.dev/waddy/books/graphql-nestjs-nextjs-bootcamp/viewer/nestjs_configration#prisma
+ * fork元: https://github.com/notiz-dev/nestjs-prisma
  */
 import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
 import {

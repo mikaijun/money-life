@@ -1,11 +1,8 @@
-import {
-  INestApplication,
-  Inject,
-  Injectable,
-  LoggerService,
-  OnModuleInit,
-  Optional,
-} from '@nestjs/common';
+/**
+ * Prismaにより取得したデータをGraphQLとしてクエリにするためのService
+ * 参考記事; https://zenn.dev/waddy/books/graphql-nestjs-nextjs-bootcamp/viewer/nestjs_configration#prisma
+ */
+import { Inject, Injectable, OnModuleInit, Optional } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
 import {
   PrismaServiceOptions,
@@ -27,25 +24,5 @@ export class PrismaService
 
   async onModuleInit() {
     await this.$connect();
-  }
-
-  async enableShutdownHooks(app: INestApplication) {
-    this.$on('beforeExit', async () => {
-      await app.close();
-    });
-  }
-
-  async enableLogger(logger: LoggerService) {
-    this.$on('query', (e) => {
-      logger.debug(e);
-    });
-
-    this.$on('info', (e) => {
-      logger.log(e);
-    });
-
-    this.$on('warn', (e) => {
-      logger.log(e);
-    });
   }
 }

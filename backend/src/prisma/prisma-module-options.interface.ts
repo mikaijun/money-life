@@ -1,21 +1,13 @@
 /**
- * fork: https://github.com/notiz-dev/nestjs-prisma/blob/main/lib/interfaces/prisma-module-options.interface.ts
+ * PrismaServiceを使うためのinterface
+ * 参考記事; https://zenn.dev/waddy/books/graphql-nestjs-nextjs-bootcamp/viewer/nestjs_configration#prisma
+ * fork元: https://github.com/notiz-dev/nestjs-prisma/blob/main/lib/interfaces/prisma-module-options.interface.ts
  */
 import { ModuleMetadata, Type } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 
 export const PRISMA_SERVICE_OPTIONS = 'PRISMA_SERVICE_OPTIONS';
 export const PRISMA_EXPLICIT_CONNECT = 'PRISMA_EXPLICIT_CONNECT';
-
-export interface PrismaModuleOptions {
-  /**
-   * If "true", registers `PrismaModule` as a global module.
-   * See: https://docs.nestjs.com/modules#global-modules
-   */
-  isGlobal?: boolean;
-
-  prismaServiceOptions?: PrismaServiceOptions;
-}
 
 export interface PrismaServiceOptions {
   /**

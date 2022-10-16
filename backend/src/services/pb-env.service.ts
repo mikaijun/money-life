@@ -38,7 +38,6 @@ export class PbEnv {
     };
     return {
       errorFormat: 'colorless',
-      rejectOnNotFound: true,
       log: logOptions[this.NodeEnv],
     };
   }
