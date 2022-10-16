@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { PostsModule } from './components/posts/posts.module';
-import { PbEnvModule } from '@pb-config/environments/pb-env.module';
-import { PbEnv } from './config/environments/pb-env.service';
 import { WinstonModule } from 'nest-winston';
-import { PrismaModule } from '@pb-components/prisma/prisma.module';
-import { AppController } from '@pb-app.controller';
-import { AppService } from '@pb-app.service';
+
+import { PostsModule } from '@pb-modules/posts/posts.module';
+import { PbEnvModule } from '@pb-modules/pb-env/pb-env.module';
+import { PrismaModule } from '@pb-prisma/prisma.module';
+import { PbEnv } from '@pb-services/pb-env.service';
 
 @Module({
   imports: [
@@ -29,7 +28,5 @@ import { AppService } from '@pb-app.service';
     }),
     PostsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import { PrismaService } from '@pb-components/prisma/prisma.service';
-import { PbEnv } from '@pb-config/environments/pb-env.service';
+import { PrismaService } from '@pb-prisma/prisma.service';
+import { PbEnv } from '@pb-services/pb-env.service';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { AppModule } from './app.module';
 

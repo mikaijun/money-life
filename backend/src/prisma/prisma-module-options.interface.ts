@@ -1,7 +1,7 @@
 /**
  * fork: https://github.com/notiz-dev/nestjs-prisma/blob/main/lib/interfaces/prisma-module-options.interface.ts
  */
-import { LoggerService, ModuleMetadata, Type } from '@nestjs/common';
+import { ModuleMetadata, Type } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 
 export const PRISMA_SERVICE_OPTIONS = 'PRISMA_SERVICE_OPTIONS';

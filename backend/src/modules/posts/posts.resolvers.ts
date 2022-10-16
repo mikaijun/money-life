@@ -1,7 +1,8 @@
-import { PrismaService } from './../prisma/prisma.service';
-import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { PostModel } from './interfaces/posts.model';
-import { GetPostsArgs } from './interfaces/get-posts-connection.args';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+
+import { PostModel } from '@pb-models/posts.model';
+import { GetPostsArgs } from '@pb-models/get-posts-connection.args';
+import { PrismaService } from '@pb-prisma/prisma.service';
 
 @Resolver(() => PostModel)
 export class PostsResolver {

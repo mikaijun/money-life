@@ -1,7 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { validate } from './env-validator';
-import { PbEnv } from './pb-env.service';
+
+import { validate } from '@pb-services/env-validator';
+import { PbEnv } from '@pb-services/pb-env.service';
 
 @Global()
 @Module({
