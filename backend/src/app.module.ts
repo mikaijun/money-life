@@ -2,21 +2,21 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
 import { PostsModule } from '@pb-modules/posts/posts.module';
-import { PbEnvModule } from '@pb-modules/pb-env/pb-env.module';
+import { EnvModule } from '@pb-library/config/env.module';
 import { PrismaModule } from '@pb-library/prisma/prisma.module';
-import { PbEnv } from '@pb-services/pb-env.service';
+import { EnvService } from '@pb-library/config/env.service';
 
 @Module({
   imports: [
-    PbEnvModule,
+    EnvModule,
     GraphQLModule.forRootAsync({
-      inject: [PbEnv],
-      useFactory: (env: PbEnv) => env.GqlModuleOptionsFactory,
+      inject: [EnvService],
+      useFactory: (env: EnvService) => env.GqlModuleOptionsFactory,
     }),
     PrismaModule.forRootAsync({
-      inject: [PbEnv],
+      inject: [EnvService],
       isGlobal: true,
-      useFactory: (env: PbEnv) => ({
+      useFactory: (env: EnvService) => ({
         prismaOptions: env.PrismaOptionsFactory,
       }),
     }),

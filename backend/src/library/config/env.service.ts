@@ -8,12 +8,8 @@ import * as path from 'path';
  * アプリケーションモジュールで利用する設定値は、ここから取得します。
  */
 @Injectable()
-export class PbEnv {
+export class EnvService {
   constructor(private configService: ConfigService) {}
-
-  isProduction(): boolean {
-    return this.configService.get('NODE_ENV') === 'production';
-  }
 
   get NodeEnv(): string {
     return this.configService.get('NODE_ENV');
@@ -55,16 +51,6 @@ export class PbEnv {
       playground: true,
     };
 
-    // 本番環境：実行だけ
-    const prdOptions: GqlModuleOptions = {
-      autoSchemaFile: true,
-      debug: false,
-      playground: false,
-    };
-    if (this.isProduction()) {
-      return prdOptions;
-    } else {
-      return devOptions;
-    }
+    return devOptions;
   }
 }
