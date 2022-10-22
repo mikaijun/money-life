@@ -7,7 +7,7 @@ import { Prisma, PrismaClient } from '@prisma/client';
 import {
   PrismaServiceOptions,
   PRISMA_SERVICE_OPTIONS,
-} from '@pb-prisma/prisma-module-options.interface';
+} from '@pb-library/prisma/prisma-module-options.interface';
 
 @Injectable()
 export class PrismaService
