@@ -10,6 +10,14 @@ export class PostRepository {
     return this.prisma.post.findMany();
   }
 
+  async findById(id: number) {
+    return this.prisma.post.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+
   async save(postId: number) {
     // TODO: 入力値は仮の値のためdata変数は後日削除予定
     const data = {

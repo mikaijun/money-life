@@ -23,5 +23,6 @@ type PostModel {
 }
 
 type Query {
+  post(id: Int!): PostModel
   posts: [PostModel!]
 }
