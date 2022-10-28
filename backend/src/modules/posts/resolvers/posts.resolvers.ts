@@ -17,7 +17,7 @@ export class PostsResolver {
   }
 
   @Mutation(() => PostModel)
-  async save(@Args({ name: 'postId', type: () => String }) postId: string) {
+  async save(@Args({ name: 'postId', type: () => Number }) postId: number) {
     return this.postSaveUseCase.invoke(postId);
   }
 }

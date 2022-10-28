@@ -10,7 +10,7 @@ export class PostSaveUseCase {
   /**
    * 1つの投稿を作成または更新を行う
    */
-  async invoke(postId: string): Promise<PostModel> {
+  async invoke(postId: number): Promise<PostModel> {
     const post = await this.postRepository.save(postId);
 
     return post;

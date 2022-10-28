@@ -11,29 +11,33 @@ datasource db {
 }
 
 model Post {
-  id           String    @id @default(uuid())
+  id           Int       @id @default(autoincrement())
+  userId       Int       @map("user_id")
   title        String
-  emoji        String?
-  type         String
-  thumbNailUrl String?   @map("thumb_nail_url")
-  excerpt      String?
-  contentPath  String    @unique @map("content_path")
-  md5Hash      String    @map("md5_hash")
-  published    Boolean?  @default(false)
-  publishDate  DateTime? @map("publish_date")
-  like         Int       @default(0)
+  content      String
+  publishAt    DateTime  @default(now()) @map("publish_at")
   createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updatedAt @map("updated_at")
+  updatedAt    DateTime?  @updatedAt @map("updated_at")
+  deletedAt    DateTime?  @updatedAt @map("deleted_at")
 
-  @@index([contentPath])
   @@map("posts")
 }
 
 model User {
-  id           String    @id @default(uuid())
+  id           Int       @id @default(autoincrement())
   name         String
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updatedAt @map("updated_at")
 
   @@map("users")
+}
+
+model Comment {
+  id           Int    @id @default(autoincrement())
+  postId       Int    @map("post_id")
+  userId       Int    @map("user_id")
+  content      String
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime?  @updatedAt @map("updated_at")
+  deletedAt    DateTime?  @updatedAt @map("deleted_at")
+
+  @@map("comments")
 }

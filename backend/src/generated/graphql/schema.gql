@@ -8,19 +8,18 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  save(postId: String!): PostModel!
+  save(postId: Float!): PostModel!
 }
 
 type PostModel {
-  contentPath: String!
-  emoji: String
-  excerpt: String
-  id: ID!
-  publishDate: DateTime
-  published: Boolean
-  thumbNailUrl: String
+  content: String!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  id: Int!
+  publishAt: DateTime
   title: String!
-  type: String!
+  updatedAt: DateTime!
+  userId: Int!
 }
 
 type Query {

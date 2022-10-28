@@ -1,73 +1,81 @@
-import { PrismaClient, Post, User } from '@prisma/client';
+import { PrismaClient, Post, User, Comment } from '@prisma/client';
 const prisma = new PrismaClient();
 
-// モデル投入用のデータ定義
 const postData: Post[] = [
   {
-    id: 'fa119cb6-9135-57f5-8a5a-54f28d566d0e',
-    contentPath: '/storage/posts/articles/hello.md',
-    emoji: '✅',
-    excerpt: '本を書いています',
-    md5Hash: '5ce6822c5efacf5791b7f46187451e73',
-    title: '気持ちを落ち着かせる呼吸法',
-    thumbNailUrl: 'http://exaample.com/image1.png',
-    type: 'article',
-    publishDate: new Date('2022-01-31'),
-    published: true,
-    like: 0,
-    createdAt: new Date('2022-01-31T04:34:22+09:00'),
-    updatedAt: new Date('2022-01-31T04:34:22+09:00'),
+    id: 1,
+    userId: 1,
+    title: 'タイトル1',
+    content: '内容1',
+    publishAt: new Date(),
+    createdAt: new Date(),
+    updatedAt: null,
+    deletedAt: null,
   },
   {
-    id: '545d5237-15ee-169c-13a2-30f8748e3d6e',
-    contentPath: '/storage/posts/articles/graphql.md',
-    emoji: '🛳',
-    excerpt: '記事を書いています',
-    md5Hash: 'b7ec2e1a2b1faaed120aeeccb1ffc587',
-    title: '高ぶる気持ちを存分に発揮したいです',
-    thumbNailUrl: 'http://exaample.com/image2.png',
-    type: 'article',
-    publishDate: new Date('2022-01-30'),
-    published: true,
-    like: 0,
-    createdAt: new Date('2022-01-31T04:34:22+09:00'),
-    updatedAt: new Date('2022-01-31T04:34:22+09:00'),
+    id: 2,
+    userId: 1,
+    title: 'タイトル2',
+    content: '内容2',
+    publishAt: new Date(),
+    createdAt: new Date(),
+    updatedAt: null,
+    deletedAt: null,
   },
   {
-    id: '95daa18f-90d0-390c-fb96-0d152312936c',
-    contentPath: '/storage/posts/articles/nestjs.md',
-    emoji: '😼',
-    excerpt: '日記を書いています',
-    md5Hash: 'e5f6dd3adc408b03fbac3faadb82947d',
-    title: 'ゆっくり落ち着く気持ちを大事にしたいです',
-    thumbNailUrl: 'http://exaample.com/image3.png',
-    type: 'diary',
-    publishDate: new Date('2022-01-29'),
-    published: true,
-    like: 0,
-    createdAt: new Date('2022-01-31T04:34:22+09:00'),
-    updatedAt: new Date('2022-01-31T04:34:22+09:00'),
+    id: 3,
+    userId: 1,
+    title: 'タイトル3',
+    content: '内容3',
+    publishAt: new Date(),
+    createdAt: new Date(),
+    updatedAt: null,
+    deletedAt: null,
   },
 ];
 
 const userData: User[] = [
   {
-    id: 'e83fa7f8-aa34-4550-abaa-ad60385fed26',
+    id: 1,
     name: 'ジョン',
-    createdAt: new Date(),
-    updatedAt: new Date(),
   },
   {
-    id: '560cd64f-8fbb-4bf0-b037-e30d970c31b2',
+    id: 2,
     name: 'マイケル',
-    createdAt: new Date(),
-    updatedAt: new Date(),
   },
   {
-    id: '21dc4691-1640-44ed-813f-82e41a675b55',
+    id: 3,
     name: 'ジョージ',
+  },
+];
+
+const commentData: Comment[] = [
+  {
+    id: 1,
+    postId: 1,
+    userId: 1,
+    content: 'コメント1',
     createdAt: new Date(),
-    updatedAt: new Date(),
+    updatedAt: null,
+    deletedAt: null,
+  },
+  {
+    id: 2,
+    postId: 1,
+    userId: 2,
+    content: 'コメント2',
+    createdAt: new Date(),
+    updatedAt: null,
+    deletedAt: null,
+  },
+  {
+    id: 3,
+    postId: 1,
+    userId: 3,
+    content: 'コメント3',
+    createdAt: new Date(),
+    updatedAt: null,
+    deletedAt: null,
   },
 ];
 
@@ -84,6 +92,12 @@ const doSeed = async () => {
       data: user,
     });
     result.push(createUsers);
+  }
+  for (const comment of commentData) {
+    const createComments = prisma.comment.create({
+      data: comment,
+    });
+    result.push(createComments);
   }
   return await prisma.$transaction(result);
 };
