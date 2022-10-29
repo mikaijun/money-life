@@ -6,19 +6,17 @@ import { PostInputType } from '@pb-models/post-input.model';
 
 @Injectable()
 export class PostSaveUseCase {
-  constructor(
-    private readonly postRepository: PostRepository,
-    private readonly postModel: PostModel,
-  ) {}
+  constructor(private readonly postRepository: PostRepository) {}
 
   /**
-   * 1つの投稿を作成または更新を行う
+   * 投稿を公開する(新規作成または更新)
    */
   async invoke(input: PostInputType): Promise<PostModel> {
     const post = await this.postRepository.findById(input.id);
-    const post2 = this.postModel.fromDatabase(post);
-    const post3 = await this.postRepository.save(input);
+    const savePost = post
+      ? await this.postRepository.update(input, post)
+      : await this.postRepository.create(input);
 
-    return post;
+    return savePost;
   }
 }

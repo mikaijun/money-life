@@ -1,3 +1,4 @@
+import { Post } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from '@pb-library/prisma/prisma.service';
@@ -12,6 +13,7 @@ export class PostRepository {
   }
 
   async findById(id: number) {
+    if (!id) return null;
     return this.prisma.post.findUnique({
       where: {
         id,
@@ -19,34 +21,38 @@ export class PostRepository {
     });
   }
 
-  async save(postInput: PostInputType) {
-    // TODO: 入力値は仮の値のためdata変数は後日削除予定
-    const data = {
-      id: 4,
-      userId: 1,
-      title: 'タイトル4',
-      content: '内容4',
-      publishAt: new Date(),
-      createdAt: new Date(),
-      updatedAt: null,
-      deletedAt: null,
-    };
-    // MEMO: DBにpostIdがあれば更新され、なければcreateされる
-    const post = await this.prisma.post.upsert({
-      where: { id: postInput.id },
-      update: data,
-      create: {
-        id: 4,
-        userId: 1,
-        title: 'タイトル4',
-        content: '内容4',
+  async create(input: PostInputType) {
+    const createPost = await this.prisma.post.create({
+      data: {
+        userId: input.userId,
+        title: input.title,
+        content: input.content,
         publishAt: new Date(),
         createdAt: new Date(),
-        updatedAt: null,
+        updatedAt: new Date(),
         deletedAt: null,
       },
     });
 
-    return post;
+    return createPost;
+  }
+
+  async update(input: PostInputType, post: Post) {
+    const updatePost = await this.prisma.post.update({
+      where: {
+        id: post.id,
+      },
+      data: {
+        userId: input.userId,
+        title: input.title,
+        content: input.content,
+        publishAt: post.publishAt,
+        createdAt: post.createdAt,
+        updatedAt: new Date(),
+        deletedAt: null,
+      },
+    });
+
+    return updatePost;
   }
 }

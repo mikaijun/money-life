@@ -1,5 +1,4 @@
 import { Field, GraphQLISODateTime, Int, ObjectType } from '@nestjs/graphql';
-import { PostInputType } from '@pb-models/post-input.model';
 
 @ObjectType()
 export class PostModel {

@@ -2,8 +2,8 @@ import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
 export class PostInput {
-  @Field()
-  id: number | null;
+  @Field({ nullable: true })
+  id: number;
   @Field()
   userId: number;
   @Field()
