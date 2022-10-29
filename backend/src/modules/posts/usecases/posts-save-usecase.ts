@@ -9,7 +9,7 @@ export class PostSaveUseCase {
   constructor(private readonly postRepository: PostRepository) {}
 
   /**
-   * 投稿を公開する(新規作成または更新)
+   * 投稿を保存する
    */
   async invoke(args: MutationPostArgsType): Promise<PostModel> {
     const post = await this.postRepository.findById(args.id);

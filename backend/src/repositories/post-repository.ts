@@ -27,10 +27,9 @@ export class PostRepository {
         userId: args.userId,
         title: args.title,
         content: args.content,
-        publishAt: new Date(),
+        publishAt: args.isDraft ? null : new Date(),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: null,
       },
     });
 
@@ -46,10 +45,10 @@ export class PostRepository {
         userId: args.userId,
         title: args.title,
         content: args.content,
-        publishAt: post.publishAt,
+        publishAt: args.isDraft ? null : post.publishAt ?? new Date(),
         createdAt: post.createdAt,
         updatedAt: new Date(),
-        deletedAt: null,
+        deletedAt: args.deletedAt ?? null,
       },
     });
 

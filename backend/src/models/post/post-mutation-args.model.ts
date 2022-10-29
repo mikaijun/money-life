@@ -5,6 +5,8 @@ export type MutationPostArgsType = {
   userId: number;
   title: string;
   content: string;
+  deletedAt: Date;
+  isDraft: boolean;
 };
 
 @InputType()
@@ -17,6 +19,8 @@ export class MutationPostArgs {
   title: string;
   @Field()
   content: string;
+  @Field({ nullable: true })
+  deletedAt: Date;
   @Field({ nullable: true })
   isDraft: boolean;
 }

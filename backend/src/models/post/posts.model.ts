@@ -23,6 +23,6 @@ export class PostModel {
   @Field(() => GraphQLISODateTime)
   updatedAt: Date;
 
-  @Field(() => GraphQLISODateTime)
+  @Field(() => GraphQLISODateTime, { nullable: true })
   deletedAt: Date;
 }

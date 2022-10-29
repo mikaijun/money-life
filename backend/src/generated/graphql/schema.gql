@@ -13,6 +13,7 @@ type Mutation {
 
 input MutationPostArgs {
   content: String!
+  deletedAt: DateTime
   id: Float
   isDraft: Boolean
   title: String!
@@ -22,7 +23,7 @@ input MutationPostArgs {
 type PostModel {
   content: String!
   createdAt: DateTime!
-  deletedAt: DateTime!
+  deletedAt: DateTime
   id: Int!
   publishAt: DateTime
   title: String!
