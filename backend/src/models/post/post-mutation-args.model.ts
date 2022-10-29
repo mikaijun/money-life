@@ -1,7 +1,14 @@
 import { InputType, Field } from '@nestjs/graphql';
 
+export type MutationPostArgsType = {
+  id: number | null;
+  userId: number;
+  title: string;
+  content: string;
+};
+
 @InputType()
-export class PostInput {
+export class MutationPostArgs {
   @Field({ nullable: true })
   id: number;
   @Field()
@@ -10,11 +17,6 @@ export class PostInput {
   title: string;
   @Field()
   content: string;
+  @Field({ nullable: true })
+  isDraft: boolean;
 }
-
-export type PostInputType = {
-  id: number | null;
-  userId: number;
-  title: string;
-  content: string;
-};
