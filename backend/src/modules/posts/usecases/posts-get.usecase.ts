@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { PostRepository } from '@pb-repositories/post-repository';
-import { PostModel } from '@pb-models/posts.model';
+import { Post } from '@prisma/client';
 
 @Injectable()
 export class PostGetUseCase {
@@ -10,7 +10,7 @@ export class PostGetUseCase {
   /**
    * 全ての投稿の取得
    */
-  async invoke(): Promise<PostModel[]> {
+  async invoke(): Promise<Post[]> {
     const posts = await this.postRepository.findAll();
 
     return posts;

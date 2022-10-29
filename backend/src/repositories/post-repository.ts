@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from '@pb-library/prisma/prisma.service';
+import { PostInputType } from '@pb-models/post-input.model';
 
 @Injectable()
 export class PostRepository {
@@ -18,7 +19,7 @@ export class PostRepository {
     });
   }
 
-  async save(postId: number) {
+  async save(postInput: PostInputType) {
     // TODO: 入力値は仮の値のためdata変数は後日削除予定
     const data = {
       id: 4,
@@ -32,7 +33,7 @@ export class PostRepository {
     };
     // MEMO: DBにpostIdがあれば更新され、なければcreateされる
     const post = await this.prisma.post.upsert({
-      where: { id: postId },
+      where: { id: postInput.id },
       update: data,
       create: {
         id: 4,
