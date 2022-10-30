@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { PostRepository } from '@src/repositories/post-repository';
-import { PostModel } from '@src/models/post/posts.model';
+import { PostModel } from '@src/models/post/post.model';
 
 @Injectable()
 export class PostFindUseCase {

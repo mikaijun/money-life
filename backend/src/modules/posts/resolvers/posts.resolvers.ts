@@ -1,6 +1,6 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { PostModel } from '@src/models/post/posts.model';
+import { PostModel } from '@src/models/post/post.model';
 import { PostFindUseCase } from '../usecases/post-find.usecase';
 import {
   MutationPostArgs,
