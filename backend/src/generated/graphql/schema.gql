@@ -8,16 +8,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  save(input: MutationPostArgs!): PostModel!
-}
-
-input MutationPostArgs {
-  content: String!
-  deletedAt: DateTime
-  id: Float
-  isDraft: Boolean
-  title: String!
-  userId: Float!
+  save(input: PostMutationDto!): PostModel!
 }
 
 type PostModel {
@@ -29,6 +20,15 @@ type PostModel {
   title: String!
   updatedAt: DateTime!
   userId: Int!
+}
+
+input PostMutationDto {
+  content: String!
+  deletedAt: DateTime
+  id: Float
+  isDraft: Boolean
+  title: String!
+  userId: Float!
 }
 
 type Query {

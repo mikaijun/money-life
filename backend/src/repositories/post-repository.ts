@@ -2,7 +2,7 @@ import { Post } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from '@src/library/prisma/prisma.service';
-import { MutationPostArgsType } from '@src/models/post/post-mutation-args.model';
+import { PostMutationDtoType } from '@src/dto/post-mutation.dto';
 
 @Injectable()
 export class PostRepository {
@@ -21,7 +21,7 @@ export class PostRepository {
     });
   }
 
-  async create(args: MutationPostArgsType) {
+  async create(args: PostMutationDtoType) {
     const createPost = await this.prisma.post.create({
       data: {
         userId: args.userId,
@@ -36,7 +36,7 @@ export class PostRepository {
     return createPost;
   }
 
-  async update(args: MutationPostArgsType, post: Post) {
+  async update(args: PostMutationDtoType, post: Post) {
     const updatePost = await this.prisma.post.update({
       where: {
         id: post.id,

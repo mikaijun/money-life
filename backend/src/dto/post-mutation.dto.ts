@@ -1,6 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
 
-export type MutationPostArgsType = {
+export type PostMutationDtoType = {
   id: number | null;
   userId: number;
   title: string;
@@ -10,7 +10,7 @@ export type MutationPostArgsType = {
 };
 
 @InputType()
-export class MutationPostArgs {
+export class PostMutationDto {
   @Field({ nullable: true })
   id: number;
   @Field()

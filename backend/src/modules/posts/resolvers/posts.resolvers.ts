@@ -3,9 +3,9 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PostModel } from '@src/models/post/post.model';
 import { PostFindUseCase } from '../usecases/post-find.usecase';
 import {
-  MutationPostArgs,
-  MutationPostArgsType,
-} from '@src/models/post/post-mutation-args.model';
+  PostMutationDto,
+  PostMutationDtoType,
+} from '@src/dto/post-mutation.dto';
 import { PostGetUseCase } from '../usecases/posts-get.usecase';
 import { PostSaveUseCase } from '../usecases/posts-save-usecase';
 
@@ -29,8 +29,8 @@ export class PostsResolver {
 
   @Mutation(() => PostModel)
   async save(
-    @Args({ name: 'input', type: () => MutationPostArgs })
-    input: MutationPostArgsType,
+    @Args({ name: 'input', type: () => PostMutationDto })
+    input: PostMutationDtoType,
   ) {
     return this.postSaveUseCase.invoke(input);
   }
