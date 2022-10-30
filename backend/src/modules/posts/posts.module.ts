@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 
-import { PostsResolver } from '@pb-modules/posts/resolvers/posts.resolvers';
-import { PostRepository } from '@pb-repositories/post-repository';
-import { PostGetUseCase } from '@pb-modules/posts/usecases/posts-get.usecase';
-import { PostSaveUseCase } from '@pb-modules/posts/usecases/posts-save-usecase';
-import { PostFindUseCase } from '@pb-modules/posts/usecases/post-find.usecase';
+import { PostsResolver } from '@src/modules/posts/resolvers/posts.resolvers';
+import { PostRepository } from '@src/repositories/post-repository';
+import { PostGetUseCase } from '@src/modules/posts/usecases/posts-get.usecase';
+import { PostSaveUseCase } from '@src/modules/posts/usecases/posts-save-usecase';
+import { PostFindUseCase } from '@src/modules/posts/usecases/post-find.usecase';
 
 @Module({
   providers: [

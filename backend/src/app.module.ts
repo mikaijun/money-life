@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import { PostsModule } from '@pb-modules/posts/posts.module';
-import { EnvModule } from '@pb-library/config/env.module';
-import { PrismaModule } from '@pb-library/prisma/prisma.module';
-import { EnvService } from '@pb-library/config/env.service';
+import { PostsModule } from '@src/modules/posts/posts.module';
+import { EnvModule } from '@src/library/config/env.module';
+import { PrismaModule } from '@src/library/prisma/prisma.module';
+import { EnvService } from '@src/library/config/env.service';
 
 @Module({
   imports: [

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-import { PostRepository } from '@pb-repositories/post-repository';
-import { PostModel } from '@pb-models/post/posts.model';
-import { MutationPostArgsType } from '@pb-models/post/post-mutation-args.model';
+import { PostRepository } from '@src/repositories/post-repository';
+import { PostModel } from '@src/models/post/posts.model';
+import { MutationPostArgsType } from '@src/models/post/post-mutation-args.model';
 
 @Injectable()
 export class PostSaveUseCase {

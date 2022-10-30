@@ -1,8 +1,8 @@
 import { Post } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 
-import { PrismaService } from '@pb-library/prisma/prisma.service';
-import { MutationPostArgsType } from '@pb-models/post/post-mutation-args.model';
+import { PrismaService } from '@src/library/prisma/prisma.service';
+import { MutationPostArgsType } from '@src/models/post/post-mutation-args.model';
 
 @Injectable()
 export class PostRepository {

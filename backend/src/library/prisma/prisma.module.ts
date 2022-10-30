@@ -8,8 +8,8 @@ import {
   PrismaModuleAsyncOptions,
   PrismaOptionsFactory,
   PRISMA_SERVICE_OPTIONS,
-} from '@pb-library/prisma/prisma-module-options.interface';
-import { PrismaService } from '@pb-library/prisma/prisma.service';
+} from '@src/library/prisma/prisma-module-options.interface';
+import { PrismaService } from '@src/library/prisma/prisma.service';
 
 @Global()
 @Module({

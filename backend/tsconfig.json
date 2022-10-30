@@ -20,7 +20,7 @@
     "lib": ["esnext"],
     "esModuleInterop": true,
     "paths": {
-      "@pb-*": ["src/*"]
+      "@src/*": ["src/*"]
     }
   }
 }
