@@ -2,6 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type CommentDto {
+  content: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  postId: Int!
+  updatedAt: DateTime!
+  userId: Int!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -32,6 +42,7 @@ input PostSaveDto {
 }
 
 type Query {
+  comment(postId: Int!): [CommentDto!]!
   post(id: Int!): PostDto
   posts: [PostDto!]
 }
