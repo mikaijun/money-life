@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PostDto } from '@src/dto/post.dto';
+import { Post } from '@prisma/client';
 
 import { PostRepository } from '@src/repositories/post-repository';
 
@@ -10,7 +10,7 @@ export class PostFindUseCase {
   /**
    * 指定したidの投稿を取得
    */
-  async invoke(id: number): Promise<PostDto> {
+  async invoke(id: number): Promise<Post> {
     const post = await this.postRepository.findById(id);
 
     return post;
