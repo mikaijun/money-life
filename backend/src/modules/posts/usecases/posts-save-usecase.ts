@@ -13,9 +13,19 @@ export class PostSaveUseCase {
    */
   async invoke(args: PostMutationDtoType): Promise<Post> {
     const post = await this.postRepository.findById(args.id);
-    const savePost = post
-      ? await this.postRepository.update(args, post)
-      : await this.postRepository.create(args);
+    const formatPost: Post = {
+      id: args.id,
+      userId: args.userId,
+      title: args.title,
+      content: args.content,
+      // 初めて記事を公開した時現在時刻を定義する
+      publishAt: args.isDraft ? null : post?.publishAt ?? new Date(),
+      // insertの時のみ現在時刻を定義する
+      createdAt: post?.createdAt ?? new Date(),
+      updatedAt: new Date(),
+      deletedAt: args.deletedAt ?? null,
+    };
+    const savePost = await this.postRepository.save(formatPost);
 
     return savePost;
   }

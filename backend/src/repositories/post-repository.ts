@@ -2,7 +2,6 @@ import { Post } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from '@src/library/prisma/prisma.service';
-import { PostMutationDtoType } from '@src/dto/post-mutation.dto';
 
 @Injectable()
 export class PostRepository {
@@ -21,37 +20,27 @@ export class PostRepository {
     });
   }
 
-  async create(args: PostMutationDtoType) {
-    const createPost = await this.prisma.post.create({
-      data: {
-        userId: args.userId,
-        title: args.title,
-        content: args.content,
-        publishAt: args.isDraft ? null : new Date(),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    });
-
-    return createPost;
-  }
-
-  async update(args: PostMutationDtoType, post: Post) {
-    const updatePost = await this.prisma.post.update({
-      where: {
-        id: post.id,
-      },
-      data: {
-        userId: args.userId,
-        title: args.title,
-        content: args.content,
-        publishAt: args.isDraft ? null : post.publishAt ?? new Date(),
-        createdAt: post.createdAt,
-        updatedAt: new Date(),
-        deletedAt: args.deletedAt ?? null,
-      },
-    });
-
-    return updatePost;
+  async save(post: Post) {
+    const data = {
+      userId: post.userId,
+      title: post.title,
+      content: post.content,
+      publishAt: post.publishAt,
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt,
+      deletedAt: post.deletedAt,
+    };
+    if (post.id) {
+      return await this.prisma.post.update({
+        where: {
+          id: post.id,
+        },
+        data,
+      });
+    } else {
+      return await this.prisma.post.create({
+        data,
+      });
+    }
   }
 }
