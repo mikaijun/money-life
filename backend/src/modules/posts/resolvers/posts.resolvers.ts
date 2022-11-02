@@ -1,7 +1,7 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { PostModel } from '@src/models/post/post.model';
 import { PostFindUseCase } from '../usecases/post-find.usecase';
+import { PostDto } from '@src/dto/post.dto';
 import {
   PostMutationDto,
   PostMutationDtoType,
@@ -9,7 +9,7 @@ import {
 import { PostGetUseCase } from '../usecases/posts-get.usecase';
 import { PostSaveUseCase } from '../usecases/posts-save-usecase';
 
-@Resolver(() => PostModel)
+@Resolver(() => PostDto)
 export class PostsResolver {
   constructor(
     private readonly postFindUseCase: PostFindUseCase,
@@ -17,17 +17,17 @@ export class PostsResolver {
     private readonly postSaveUseCase: PostSaveUseCase,
   ) {}
 
-  @Query(() => [PostModel], { name: 'posts', nullable: true })
+  @Query(() => [PostDto], { name: 'posts', nullable: true })
   async findAll() {
     return this.postGetUseCase.invoke();
   }
 
-  @Query(() => PostModel, { name: 'post', nullable: true })
+  @Query(() => PostDto, { name: 'post', nullable: true })
   async findById(@Args('id', { type: () => Int }) id: number) {
     return this.postFindUseCase.invoke(id);
   }
 
-  @Mutation(() => PostModel)
+  @Mutation(() => PostDto)
   async save(
     @Args({ name: 'input', type: () => PostMutationDto })
     input: PostMutationDtoType,

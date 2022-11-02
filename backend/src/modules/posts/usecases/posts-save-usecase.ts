@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
+import { PostDto } from '@src/dto/post.dto';
 import { PostRepository } from '@src/repositories/post-repository';
-import { PostModel } from '@src/models/post/post.model';
 import { PostMutationDtoType } from '@src/dto/post-mutation.dto';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class PostSaveUseCase {
   /**
    * 投稿を保存する
    */
-  async invoke(args: PostMutationDtoType): Promise<PostModel> {
+  async invoke(args: PostMutationDtoType): Promise<PostDto> {
     const post = await this.postRepository.findById(args.id);
     const savePost = post
       ? await this.postRepository.update(args, post)

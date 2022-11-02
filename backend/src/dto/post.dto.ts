@@ -1,7 +1,7 @@
 import { Field, GraphQLISODateTime, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class PostModel {
+export class PostDto {
   @Field(() => Int)
   id: number;
 
