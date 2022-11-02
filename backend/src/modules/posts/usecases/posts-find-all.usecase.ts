@@ -4,7 +4,7 @@ import { PostRepository } from '@src/repositories/post-repository';
 import { Post } from '@prisma/client';
 
 @Injectable()
-export class PostGetUseCase {
+export class PostFindAllUseCase {
   constructor(private readonly postRepository: PostRepository) {}
 
   /**

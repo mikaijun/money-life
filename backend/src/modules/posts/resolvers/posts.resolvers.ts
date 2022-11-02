@@ -1,27 +1,27 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { PostFindUseCase } from '../usecases/post-find.usecase';
 import { PostDto } from '@src/dto/post.dto';
 import { PostSaveDto, PostSaveDtoType } from '@src/dto/post-save.dto';
-import { PostGetUseCase } from '../usecases/posts-get.usecase';
-import { PostSaveUseCase } from '../usecases/posts-save-usecase';
+import { PostFindByIdUseCase } from '@src/modules/posts/usecases/post-find-by-id.usecase';
+import { PostFindAllUseCase } from '@src/modules/posts/usecases/posts-find-all.usecase';
+import { PostSaveUseCase } from '@src/modules/posts/usecases/posts-save-usecase';
 
 @Resolver(() => PostDto)
 export class PostsResolver {
   constructor(
-    private readonly postFindUseCase: PostFindUseCase,
-    private readonly postGetUseCase: PostGetUseCase,
+    private readonly PostFindByIdUseCase: PostFindByIdUseCase,
+    private readonly PostFindAllUseCase: PostFindAllUseCase,
     private readonly postSaveUseCase: PostSaveUseCase,
   ) {}
 
   @Query(() => [PostDto], { name: 'posts', nullable: true })
   async findAll() {
-    return this.postGetUseCase.invoke();
+    return this.PostFindAllUseCase.invoke();
   }
 
   @Query(() => PostDto, { name: 'post', nullable: true })
   async findById(@Args('id', { type: () => Int }) id: number) {
-    return this.postFindUseCase.invoke(id);
+    return this.PostFindByIdUseCase.invoke(id);
   }
 
   @Mutation(() => PostDto)
