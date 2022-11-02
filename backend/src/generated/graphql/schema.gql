@@ -8,7 +8,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  save(input: PostMutationDto!): PostDto!
+  save(input: PostSaveDto!): PostDto!
 }
 
 type PostDto {
@@ -22,7 +22,7 @@ type PostDto {
   userId: Int!
 }
 
-input PostMutationDto {
+input PostSaveDto {
   content: String!
   deletedAt: DateTime
   id: Float
