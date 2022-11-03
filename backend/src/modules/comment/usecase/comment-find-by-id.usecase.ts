@@ -11,7 +11,6 @@ export class CommentFindByPostIdUseCase {
    */
   async invoke(id: number): Promise<Comment[]> {
     const comments = await this.commentRepository.findByPostId(id);
-    console.log('comments', comments);
 
     return comments;
   }

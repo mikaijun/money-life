@@ -25,7 +25,7 @@ export class PostsResolver {
   }
 
   @Mutation(() => PostDto)
-  async save(
+  async savePost(
     @Args({ name: 'input', type: () => PostSaveDto })
     input: PostSaveDtoType,
   ) {
