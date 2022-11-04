@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 import { Comment } from '@prisma/client';
-import { CommentRepository } from '@src/repositories/comment-repository';
-import { CommentSaveDtoType } from '@src/dto/comment-save.dto';
+import { CommentRepository } from 'repositories/comment-repository';
+import { CommentSaveDtoType } from 'dto/comment-save.dto';
 
 @Injectable()
 export class CommentSaveUseCase {

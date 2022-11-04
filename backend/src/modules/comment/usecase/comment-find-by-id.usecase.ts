@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Comment } from '@prisma/client';
-import { CommentRepository } from '@src/repositories/comment-repository';
+import { CommentRepository } from 'repositories/comment-repository';
 
 @Injectable()
 export class CommentFindByPostIdUseCase {

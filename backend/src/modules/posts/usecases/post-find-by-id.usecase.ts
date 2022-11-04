@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Post } from '@prisma/client';
 
-import { PostRepository } from '@src/repositories/post-repository';
+import { PostRepository } from 'repositories/post-repository';
 
 @Injectable()
 export class PostFindByIdUseCase {

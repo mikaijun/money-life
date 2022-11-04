@@ -1,10 +1,10 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { PostDto } from '@src/dto/post.dto';
-import { PostSaveDto, PostSaveDtoType } from '@src/dto/post-save.dto';
-import { PostFindByIdUseCase } from '@src/modules/posts/usecases/post-find-by-id.usecase';
-import { PostFindAllUseCase } from '@src/modules/posts/usecases/posts-find-all.usecase';
-import { PostSaveUseCase } from '@src/modules/posts/usecases/posts-save-usecase';
+import { PostDto } from 'dto/post.dto';
+import { PostSaveDto, PostSaveDtoType } from 'dto/post-save.dto';
+import { PostFindByIdUseCase } from 'modules/posts/usecases/post-find-by-id.usecase';
+import { PostFindAllUseCase } from 'modules/posts/usecases/posts-find-all.usecase';
+import { PostSaveUseCase } from 'modules/posts/usecases/posts-save-usecase';
 
 @Resolver(() => PostDto)
 export class PostsResolver {

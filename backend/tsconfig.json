@@ -19,8 +19,6 @@
     "noFallthroughCasesInSwitch": false,
     "lib": ["esnext"],
     "esModuleInterop": true,
-    "paths": {
-      "@src/*": ["src/*"]
-    }
+    "baseUrl":"src/",
   }
 }

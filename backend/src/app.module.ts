@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import { PostsModule } from '@src/modules/posts/posts.module';
-import { CommentModule } from '@src/modules/comment/comment.module';
-import { EnvModule } from '@src/library/config/env.module';
-import { PrismaModule } from '@src/library/prisma/prisma.module';
-import { EnvService } from '@src/library/config/env.service';
+import { PostsModule } from 'modules/posts/posts.module';
+import { CommentModule } from 'modules/comment/comment.module';
+import { EnvModule } from 'library/config/env.module';
+import { PrismaModule } from 'library/prisma/prisma.module';
+import { EnvService } from 'library/config/env.service';
 
 @Module({
   imports: [

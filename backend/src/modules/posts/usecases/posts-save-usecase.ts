@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { PostRepository } from '@src/repositories/post-repository';
-import { PostSaveDtoType } from '@src/dto/post-save.dto';
+import { PostRepository } from 'repositories/post-repository';
+import { PostSaveDtoType } from 'dto/post-save.dto';
 import { Post } from '@prisma/client';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Comment } from '@prisma/client';
 
-import { PrismaService } from '@src/library/prisma/prisma.service';
+import { PrismaService } from 'library/prisma/prisma.service';
 
 @Injectable()
 export class CommentRepository {
