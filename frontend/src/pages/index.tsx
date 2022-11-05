@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { PostIndexPageDocument } from '../graphql/generated.graphql'
-import { urqlClient } from '../libs/gql-requests'
+import { urqlClient } from '../graphql/gql-requests'
 
 type Props = {
   posts: {
