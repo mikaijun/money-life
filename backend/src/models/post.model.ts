@@ -28,6 +28,30 @@ export class Post {
     });
   }
 
+  public static toPrisma(
+    post: Post,
+  ): Pick<
+    Post,
+    | 'userId'
+    | 'title'
+    | 'content'
+    | 'publishAt'
+    | 'createdAt'
+    | 'updatedAt'
+    | 'deletedAt'
+  > {
+    const data = {
+      userId: post.userId,
+      title: post.title,
+      content: post.content,
+      publishAt: post.publishAt,
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt,
+      deletedAt: post.deletedAt,
+    };
+    return data;
+  }
+
   public static create(data: PostSaveDtoType): Post {
     return new Post({
       id: null,

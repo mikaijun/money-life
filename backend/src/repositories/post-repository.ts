@@ -23,15 +23,7 @@ export class PostRepository {
   }
 
   async save(post: Post): Promise<Post> {
-    const data = {
-      userId: post.userId,
-      title: post.title,
-      content: post.content,
-      publishAt: post.publishAt,
-      createdAt: post.createdAt,
-      updatedAt: post.updatedAt,
-      deletedAt: post.deletedAt,
-    };
+    const data = Post.toPrisma(post);
     if (post.id) {
       const row = await this.prisma.post.update({
         where: {
