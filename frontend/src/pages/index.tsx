@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { PostIndexPageDocument } from '../src/graphql/generated.graphql'
-import { urqlClient } from '../src/libs/gql-requests'
+import { PostIndexPageDocument } from '../graphql/generated.graphql'
+import { urqlClient } from '../libs/gql-requests'
 
 type Props = {
   posts: {
@@ -15,9 +15,7 @@ const Home: NextPage<Props> = (props) => {
       <main>
         <ul>
           {props.posts.map((post) => (
-            <li key={post.id}>
-              id: {post.id} title: {post.title}
-            </li>
+            <li key={post.id}>{post.title}</li>
           ))}
         </ul>
       </main>
