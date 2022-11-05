@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { PostRepository } from 'repositories/post-repository';
 import { PostSaveDtoType } from 'dto/post-save.dto';
-import { Post } from '@prisma/client';
+import { Post } from 'models/post.model';
 
 @Injectable()
 export class PostSaveUseCase {
@@ -12,21 +12,10 @@ export class PostSaveUseCase {
    * 投稿を保存する
    */
   async invoke(args: PostSaveDtoType): Promise<Post> {
-    const post = await this.postRepository.findById(args.id);
-    const formatPost: Post = {
-      id: args.id,
-      userId: args.userId,
-      title: args.title,
-      content: args.content,
-      // 初めて記事を公開した時現在時刻を定義する
-      publishAt: args.isDraft ? null : post?.publishAt ?? new Date(),
-      // insertの時のみ現在時刻を定義する
-      createdAt: post?.createdAt ?? new Date(),
-      updatedAt: new Date(),
-      deletedAt: args.deletedAt ?? null,
-    };
-    const savePost = await this.postRepository.save(formatPost);
-
-    return savePost;
+    if (args.id) {
+      const post = await this.postRepository.findById(args.id);
+      return this.postRepository.save(post.update(args));
+    }
+    return this.postRepository.save(Post.create(args));
   }
 }

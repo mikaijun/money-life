@@ -1,26 +1,28 @@
-import { Post } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from 'library/prisma/prisma.service';
+import { Post } from 'models/post.model';
 
 @Injectable()
 export class PostRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll() {
-    return this.prisma.post.findMany();
+    const rows = await this.prisma.post.findMany();
+    return rows.map((row) => Post.fromDatabase(row));
   }
 
-  async findById(id: number) {
+  async findById(id: number): Promise<Post> {
     if (!id) return null;
-    return this.prisma.post.findUnique({
+    const row = await this.prisma.post.findUnique({
       where: {
         id,
       },
     });
+    return Post.fromDatabase(row);
   }
 
-  async save(post: Post) {
+  async save(post: Post): Promise<Post> {
     const data = {
       userId: post.userId,
       title: post.title,
@@ -31,16 +33,18 @@ export class PostRepository {
       deletedAt: post.deletedAt,
     };
     if (post.id) {
-      return await this.prisma.post.update({
+      const row = await this.prisma.post.update({
         where: {
           id: post.id,
         },
         data,
       });
+      return Post.fromDatabase(row);
     } else {
-      return await this.prisma.post.create({
+      const row = await this.prisma.post.create({
         data,
       });
+      return Post.fromDatabase(row);
     }
   }
 }
