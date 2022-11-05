@@ -64,8 +64,6 @@ export const PostIndexPageDocument = gql`
     posts {
       id
       title
-      type
-      publishDate
     }
   }
 `;
