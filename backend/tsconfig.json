@@ -18,6 +18,7 @@
     "noFallthroughCasesInSwitch": false,
     "lib": ["esnext"],
     "esModuleInterop": true,
-    "baseUrl":"src/",
+    "baseUrl": "src/",
+    "strict": true
   }
 }
