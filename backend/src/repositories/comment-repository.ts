@@ -8,7 +8,6 @@ export class CommentRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async findById(id: number) {
-    if (!id) return null;
     return this.prisma.comment.findUnique({
       where: {
         id,
@@ -16,7 +15,6 @@ export class CommentRepository {
     });
   }
   async findByPostId(postId: number) {
-    if (!postId) return null;
     return this.prisma.comment.findMany({
       where: {
         postId,
