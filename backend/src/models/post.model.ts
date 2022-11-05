@@ -1,3 +1,5 @@
+import { PostSaveDtoType } from 'dto/post-save.dto';
+
 export class Post {
   public readonly id!: number;
   public readonly userId!: number;
@@ -25,29 +27,29 @@ export class Post {
     });
   }
 
-  public static create(record: Record<string, any>): Post {
+  public static create(data: PostSaveDtoType): Post {
     return new Post({
       id: null,
-      userId: record.userId,
-      title: record.title,
-      content: record.content,
-      publishAt: record.isDraft ? null : new Date(),
+      userId: data.userId,
+      title: data.title,
+      content: data.content,
+      publishAt: data.isDraft ? null : new Date(),
       createdAt: new Date(),
       updatedAt: new Date(),
       deletedAt: null,
     });
   }
 
-  public update(record: Record<string, any>): Post {
+  public update(data: PostSaveDtoType): Post {
     return new Post({
-      id: record.id,
-      userId: record.userId,
-      title: record.title,
-      content: record.content,
-      publishAt: record.isDraft ? null : record.publishAt,
-      createdAt: record.createdAt,
+      id: data.id,
+      userId: data.userId,
+      title: data.title,
+      content: data.content,
+      publishAt: data.isDraft ? null : this.publishAt,
+      createdAt: this.createdAt,
       updatedAt: new Date(),
-      deletedAt: record.deletedAt ?? null,
+      deletedAt: data.deletedAt ?? null,
     });
   }
 }
