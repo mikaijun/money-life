@@ -1,3 +1,4 @@
+import { Post as PrismaPost } from '@prisma/client';
 import { PostSaveDtoType } from 'dto/post-save.dto';
 
 export class Post {
@@ -14,7 +15,7 @@ export class Post {
     Object.assign(this, record);
   }
 
-  public static fromDatabase(record: Record<string, any>): Post {
+  public static fromPrisma(record: PrismaPost): Post {
     return new Post({
       id: record.id,
       userId: record.userId,

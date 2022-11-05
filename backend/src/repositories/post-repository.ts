@@ -9,7 +9,7 @@ export class PostRepository {
 
   async findAll() {
     const rows = await this.prisma.post.findMany();
-    return rows.map((row) => Post.fromDatabase(row));
+    return rows.map((row) => Post.fromPrisma(row));
   }
 
   async findById(id: number): Promise<Post> {
@@ -19,7 +19,7 @@ export class PostRepository {
         id,
       },
     });
-    return Post.fromDatabase(row);
+    return Post.fromPrisma(row);
   }
 
   async save(post: Post): Promise<Post> {
@@ -39,12 +39,12 @@ export class PostRepository {
         },
         data,
       });
-      return Post.fromDatabase(row);
+      return Post.fromPrisma(row);
     } else {
       const row = await this.prisma.post.create({
         data,
       });
-      return Post.fromDatabase(row);
+      return Post.fromPrisma(row);
     }
   }
 }
