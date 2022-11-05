@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Comment } from '@prisma/client';
+import { Comment } from 'models/comment.model';
 import { CommentRepository } from 'repositories/comment-repository';
 
 @Injectable()

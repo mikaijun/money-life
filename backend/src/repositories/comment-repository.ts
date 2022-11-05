@@ -1,47 +1,44 @@
 import { Injectable } from '@nestjs/common';
-import { Comment } from '@prisma/client';
 
 import { PrismaService } from 'library/prisma/prisma.service';
+import { Comment } from 'models/comment.model';
 
 @Injectable()
 export class CommentRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async findById(id: number): Promise<Comment | undefined> {
-    return this.prisma.comment.findUnique({
+    const row = await this.prisma.comment.findUnique({
       where: {
         id,
       },
     });
+    return Comment.fromPrisma(row);
   }
   async findByPostId(postId: number): Promise<Comment[] | undefined> {
-    return this.prisma.comment.findMany({
+    const rows = await this.prisma.comment.findMany({
       where: {
         postId,
       },
     });
+    return rows.map((row) => Comment.fromPrisma(row));
   }
 
   async save(comment: Comment) {
-    const data = {
-      userId: comment.userId,
-      postId: comment.postId,
-      content: comment.content,
-      createdAt: comment.createdAt,
-      updatedAt: comment.updatedAt,
-      deletedAt: comment.deletedAt,
-    };
+    const data = Comment.toPrisma(comment);
     if (comment.id) {
-      return await this.prisma.comment.update({
+      const row = await this.prisma.comment.update({
         where: {
           id: comment.id,
         },
         data,
       });
+      return Comment.fromPrisma(row);
     } else {
-      return await this.prisma.comment.create({
+      const row = await this.prisma.comment.create({
         data,
       });
+      return Comment.fromPrisma(row);
     }
   }
 }
