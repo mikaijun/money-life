@@ -92,6 +92,7 @@ export type PostIndexPageQuery = {
   posts?: Array<{ __typename?: 'PostDto'; id: number; title: string }> | null
 }
 
+// HACK: 本来はPostIndexPageDocumentしか使わないのに同じファイルに色々出力されてしまうのをどうにかしたい
 export const PostIndexPageDocument = gql`
   query PostIndexPage {
     posts {

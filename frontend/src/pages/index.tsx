@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { PostIndexPageDocument } from '../graphql/generated.graphql'
-import { urqlClient } from '../graphql/urql-client'
+import { urqlQuery } from '../graphql/urql-client'
 
 type Props = {
   posts: {
@@ -12,33 +12,24 @@ type Props = {
 const Home: NextPage<Props> = (props) => {
   return (
     <div>
-      <main>
-        <ul>
-          {props.posts.map((post) => (
-            <li key={post.id}>{post.title}</li>
-          ))}
-        </ul>
-      </main>
+      <h1>トップページ</h1>
+      <ul>
+        {props.posts.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
     </div>
   )
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  try {
-    const client = await urqlClient()
+  // TODO: できればreturnもany以外の型を宣言したい
+  const result = await urqlQuery(PostIndexPageDocument)
 
-    const result = await client.query(PostIndexPageDocument, {}).toPromise()
-
-    return {
-      props: {
-        posts: result.data.posts,
-      },
-    }
-  } catch (e) {
-    console.error(e)
-    return {
-      notFound: true,
-    }
+  return {
+    props: {
+      posts: result.data.posts,
+    },
   }
 }
 

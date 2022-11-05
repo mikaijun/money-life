@@ -1,5 +1,6 @@
+import { DocumentNode } from 'graphql'
 import { initUrqlClient } from 'next-urql'
-import { Client } from 'urql'
+import { Client, OperationResult } from 'urql'
 
 const GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT!
 
@@ -17,4 +18,12 @@ export function urqlClient(): Promise<Client> {
       resolve(client)
     }
   })
+}
+
+export async function urqlQuery(documentNode: DocumentNode): Promise<OperationResult> {
+  // TODO: エラーハンドリングを行う
+  const client = await urqlClient()
+  const result = await client.query(documentNode, {}).toPromise()
+
+  return result
 }
