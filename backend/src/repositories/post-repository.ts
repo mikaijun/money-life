@@ -12,13 +12,14 @@ export class PostRepository {
     return rows.map((row) => Post.fromPrisma(row));
   }
 
-  async findById(id: number): Promise<Post> {
-    if (!id) return null;
+  async findById(id: number): Promise<Post | undefined> {
     const row = await this.prisma.post.findUnique({
       where: {
         id,
       },
     });
+    // TODO: いずれはエラーハンドリングしたい
+    if (!row) undefined;
     return Post.fromPrisma(row);
   }
 

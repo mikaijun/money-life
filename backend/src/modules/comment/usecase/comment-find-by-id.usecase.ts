@@ -9,7 +9,7 @@ export class CommentFindByPostIdUseCase {
   /**
    * 指定した投稿idのコメントを全て取得
    */
-  async invoke(id: number): Promise<Comment[]> {
+  async invoke(id: number): Promise<Comment[] | undefined> {
     const comments = await this.commentRepository.findByPostId(id);
 
     return comments;

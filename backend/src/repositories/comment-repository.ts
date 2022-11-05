@@ -7,14 +7,14 @@ import { PrismaService } from 'library/prisma/prisma.service';
 export class CommentRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findById(id: number) {
+  async findById(id: number): Promise<Comment | undefined> {
     return this.prisma.comment.findUnique({
       where: {
         id,
       },
     });
   }
-  async findByPostId(postId: number) {
+  async findByPostId(postId: number): Promise<Comment[] | undefined> {
     return this.prisma.comment.findMany({
       where: {
         postId,
