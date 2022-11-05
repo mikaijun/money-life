@@ -18,8 +18,7 @@ export class PostRepository {
         id,
       },
     });
-    // TODO: いずれはエラーハンドリングしたい
-    if (!row) undefined;
+    if (!row) return undefined;
     return Post.fromPrisma(row);
   }
 
