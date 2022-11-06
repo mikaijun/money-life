@@ -4,3 +4,16 @@ query PostIndexPage {
     title
   }
 }
+
+query PostShowPage($id: Int!) {
+  post(id: $id) {
+    id
+    title
+    userId
+    content
+    publishAt
+    createdAt
+    deletedAt
+    updatedAt
+  }
+}

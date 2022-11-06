@@ -20,10 +20,14 @@ export function urqlClient(): Promise<Client> {
   })
 }
 
-export async function urqlQuery(documentNode: DocumentNode): Promise<OperationResult> {
+export async function urqlQuery(
+  documentNode: DocumentNode,
+  // TODO: もっと詳しく型宣言したい
+  args?: object,
+): Promise<OperationResult> {
   // TODO: エラーハンドリングを行う
   const client = await urqlClient()
-  const result = await client.query(documentNode, {}).toPromise()
+  const result = await client.query(documentNode, args).toPromise()
 
   return result
 }

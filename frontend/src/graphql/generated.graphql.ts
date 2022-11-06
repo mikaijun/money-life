@@ -92,7 +92,25 @@ export type PostIndexPageQuery = {
   posts?: Array<{ __typename?: 'PostDto'; id: number; title: string }> | null
 }
 
-// HACK: 本来はPostIndexPageDocumentしか使わないのに同じファイルに色々出力されてしまうのをどうにかしたい
+export type PostShowPageQueryVariables = Exact<{
+  id: Scalars['Int']
+}>
+
+export type PostShowPageQuery = {
+  __typename?: 'Query'
+  post?: {
+    __typename?: 'PostDto'
+    id: number
+    title: string
+    userId: number
+    content: string
+    publishAt?: any | null
+    createdAt: any
+    deletedAt?: any | null
+    updatedAt: any
+  } | null
+}
+
 export const PostIndexPageDocument = gql`
   query PostIndexPage {
     posts {
@@ -107,6 +125,29 @@ export function usePostIndexPageQuery(
 ) {
   return Urql.useQuery<PostIndexPageQuery, PostIndexPageQueryVariables>({
     query: PostIndexPageDocument,
+    ...options,
+  })
+}
+export const PostShowPageDocument = gql`
+  query PostShowPage($id: Int!) {
+    post(id: $id) {
+      id
+      title
+      userId
+      content
+      publishAt
+      createdAt
+      deletedAt
+      updatedAt
+    }
+  }
+`
+
+export function usePostShowPageQuery(
+  options: Omit<Urql.UseQueryArgs<PostShowPageQueryVariables>, 'query'>,
+) {
+  return Urql.useQuery<PostShowPageQuery, PostShowPageQueryVariables>({
+    query: PostShowPageDocument,
     ...options,
   })
 }

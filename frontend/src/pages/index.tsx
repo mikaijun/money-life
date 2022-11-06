@@ -1,4 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
+import Link from 'next/link'
+
 import { PostIndexPageDocument } from '../graphql/generated.graphql'
 import { urqlQuery } from '../graphql/urql-client'
 
@@ -13,11 +15,15 @@ const Home: NextPage<Props> = (props) => {
   return (
     <div>
       <h1>トップページ</h1>
-      <ul>
+      <div>
         {props.posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <div key={post.id}>
+            <Link href={`/show/${post.id}`}>
+              <a>{post.title}</a>
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
